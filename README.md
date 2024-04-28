@@ -1,1 +1,3 @@
 # ThreeJS
+
+Author: Wojciech Kwiatkowski
