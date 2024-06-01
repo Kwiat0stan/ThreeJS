@@ -44,16 +44,21 @@
         webGLRenderer.setSize(window.innerWidth, window.innerHeight);
         webGLRenderer.shadowMapEnabled = true;
 
-        var sphere1 = createMesh(new THREE.CubeGeometry(15, 15, 2), "stone.jpg");
+// ------------------------------------------------------------------------------------------
+// Zmiana tekstur
+
+        var sphere1 = createMesh(new THREE.CubeGeometry(15, 15, 2), "weave.jpg");
         sphere1.rotation.y = -0.5;
         sphere1.position.x = 12;
         scene.add(sphere1);
 
-        var sphere2 = createMesh(new THREE.CubeGeometry(15, 15, 2), "stone.jpg", "stone-bump.jpg");
+        var sphere2 = createMesh(new THREE.CubeGeometry(15, 15, 2), "stone.jpg", "plaster.jpg");
         sphere2.rotation.y = 0.5;
         sphere2.position.x = -12;
         scene.add(sphere2);
         console.log(sphere2.geometry.faceVertexUvs);
+
+// ------------------------------------------------------------------------------------------
 
         var floorTex = THREE.ImageUtils.loadTexture("textures/floor-wood.jpg");
         var plane = new THREE.Mesh(new THREE.BoxGeometry(200, 100, 0.1, 30), new THREE.MeshPhongMaterial({color: 0x3c3c3c, map: floorTex}));
