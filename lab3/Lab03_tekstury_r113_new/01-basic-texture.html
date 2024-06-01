@@ -54,17 +54,22 @@
 		
 		ctr = new THREE.OrbitControls( camera, renderer.domElement);
 
-        const polyhedron = createMesh(new THREE.IcosahedronGeometry(5, 0), "floor-wood.jpg");
+        // Przeskalowanie obiektów
+        // -------------------------------------------------------------------------------
+
+        const polyhedron = createMesh(new THREE.IcosahedronGeometry(3, 0), "floor-wood.jpg");
         polyhedron.position.x = 12;
         scene.add(polyhedron);
 
-        const sphere = createMesh(new THREE.SphereGeometry(5, 20, 20), "floor-wood.jpg");
+        const sphere = createMesh(new THREE.SphereGeometry(3, 10, 20), "floor-wood.jpg");
         scene.add(sphere);
 
-        const cube = createMesh(new THREE.CubeGeometry(5, 5, 5), "brick-wall.jpg");
+        const cube = createMesh(new THREE.CubeGeometry(7, 2, 2), "brick-wall.jpg");
         cube.position.x = -12;
         scene.add(cube);
         console.log(cube.geometry.faceVertexUvs);
+
+        // -------------------------------------------------------------------------------
 
         // position and point the camera to the center of the scene
         camera.position.x = 00;
@@ -96,18 +101,24 @@
 
         render();
 
+        // -------------------------------------------------------------------------------
+        // Zmiana wartości i uaktywnienie atrybutów
+
         function createMesh(geom, imageFile) {
-            let texture = new THREE.TextureLoader().load("textures/" + imageFile);
-			//var texture = THREE.ImageUtils.loadTexture("textures/" + imageFile)
-			//texture.wrapS = THREE.RepeatWrapping; 
-			//texture.wrapT = THREE.RepeatWrapping; 
-			texture.repeat.set( 1, 1 );
+            // let texture = new THREE.TextureLoader().load("textures/" + imageFile);
+			var texture = THREE.ImageUtils.loadTexture("textures/" + imageFile)
+			texture.wrapS = THREE.RepeatWrapping; 
+			texture.wrapT = THREE.RepeatWrapping; 
+			texture.repeat.set( 0.25, 0.25 );
             let mat = new THREE.MeshPhongMaterial();
             mat.map = texture;
 
             const mesh = new THREE.Mesh(geom, mat);
             return mesh;
         }
+
+        // -------------------------------------------------------------------------------
+
 
         function render() {
             stats.update();
